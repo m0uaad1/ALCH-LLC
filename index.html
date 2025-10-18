@@ -1,67 +1,194 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CAP Garland, LLC</title>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ALCH LLC — Modern Living & Interior Excellence</title>
+  <meta name="description" content="ALCH LLC — Bringing sophisticated design and modern living to San Diego. Discover curated spaces, fine materials, and architectural elegance."/>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f0f0f0;
-      color: #333;
+    :root{
+      --primary:#1e293b;   /* Charcoal tone */
+      --accent:#d4a373;    /* Soft gold */
+      --ink:#0b0b0b;
+      --muted:#6b7280;
+      --card:#ffffff;
+      --bg:#fafafa;
+      --ring: rgba(212,163,115,.25);
     }
-    header {
-      background-color: #003366;
-      color: white;
-      padding: 30px 20px;
-      text-align: center;
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.6}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{max-width:1100px;margin:0 auto;padding:24px}
+
+    header{background:var(--primary); color:#fff; position:sticky; top:0; z-index:10; box-shadow:0 6px 18px rgba(0,0,0,.15)}
+    .topbar{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 24px}
+    .brand{font-weight:900; letter-spacing:.4px; color:#fde68a}
+    nav a{display:inline-block; padding:10px 14px; border-radius:12px; color:#f1f5f9; font-weight:700}
+    nav a:hover{background:rgba(255,255,255,.14)}
+    .cta-btn{background:var(--accent); color:#1e1e1e; padding:10px 14px; border-radius:12px; font-weight:800}
+
+    .hero-wrap{background:linear-gradient(180deg,#fff,#f8fafc); padding:42px 24px}
+    .hero-card{
+      background:var(--card); border:1px solid rgba(0,0,0,.08); border-radius:22px;
+      box-shadow:0 30px 60px rgba(0,0,0,.15); padding:28px;
+      display:grid; grid-template-columns:1.15fr .85fr; gap:22px; overflow:hidden;
+      transform:translateY(24px); opacity:0; animation:fadeIn .9s ease-out .15s forwards;
     }
-    section {
-      max-width: 800px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
-    h1, h2 {
-      color: #003366;
-    }
-    .contact {
-      background: #fff;
-      padding: 20px;
-      border-left: 5px solid #003366;
-      margin-top: 30px;
-    }
-    footer {
-      background-color: #003366;
-      color: white;
-      text-align: center;
-      padding: 15px;
-      margin-top: 50px;
+    @keyframes fadeIn{to{transform:translateY(0);opacity:1}}
+    .hero-badge{display:inline-flex; align-items:center; gap:10px; background:var(--accent); color:#1e1e1e;
+      padding:6px 12px; border-radius:999px; font-size:.9rem; font-weight:800; box-shadow:0 0 0 6px var(--ring)}
+    .hero-title{font-size:clamp(26px,4vw,42px); line-height:1.15; margin:14px 0 10px; font-weight:900}
+    .hero-title .grad{background:linear-gradient(90deg,var(--accent),var(--primary)); -webkit-background-clip:text; color:transparent}
+    .hero-sub{font-size:1.02rem; color:#374151}
+    .hero-actions{display:flex; gap:12px; flex-wrap:wrap; margin-top:14px}
+    .btn{border:2px solid var(--accent); color:#fff; background:var(--primary); padding:12px 18px; border-radius:14px; font-weight:800}
+    .btn.secondary{background:var(--accent); border-color:var(--accent); color:#1e1e1e}
+    .btn:hover{transform:translateY(-1px); box-shadow:0 8px 16px rgba(0,0,0,.2)}
+    .hero-media{border-radius:18px; overflow:hidden; aspect-ratio:4/3; background:#f1f1f1;
+      display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr; gap:8px}
+    .hero-media img{object-fit:cover; width:100%; height:100%}
+
+    section{padding:56px 24px}
+    section h2{font-size:clamp(22px,3vw,32px); margin:0 0 14px; font-weight:900; color:var(--primary)}
+    .muted{color:var(--muted)}
+
+    .cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px}
+    .card{border:1px solid rgba(0,0,0,.06); border-radius:16px; padding:16px; background:#fff;
+      box-shadow:0 8px 24px rgba(0,0,0,.06); transform:translateY(14px); opacity:0}
+    .card.reveal{animation:reveal .7s ease-out forwards}
+    @keyframes reveal{to{transform:translateY(0); opacity:1}}
+
+    .gallery{display:grid; grid-template-columns:repeat(2,1fr); gap:12px}
+    .gallery img{border-radius:14px; aspect-ratio:4/3; object-fit:cover}
+
+    .contact-box{background:var(--accent); color:#1e1e1e; border-radius:18px; padding:20px; display:grid; gap:8px; border:1px solid rgba(0,0,0,.06)}
+    .contact-actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:6px}
+    .contact-actions a{display:inline-block; background:var(--primary); color:#fff; padding:10px 14px; border-radius:12px; font-weight:800}
+
+    footer{background:#111827; color:#e5e7eb; padding:18px; text-align:center; font-weight:700}
+
+    @media (max-width:820px){
+      .hero-card{grid-template-columns:1fr; padding:20px}
+      .gallery{grid-template-columns:1fr}
     }
   </style>
 </head>
 <body>
+
   <header>
-    <h1>CAP Garland, LLC</h1>
-    <p>Private Investment Fund</p>
+    <div class="topbar container">
+      <div class="brand">ALCH LLC</div>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact" class="cta-btn">Contact</a>
+      </nav>
+    </div>
   </header>
 
-  <section>
-    <h2>About Us</h2>
-    <p>CAP Garland, LLC is a Washington-based private investment fund focused on delivering value through diversified investment strategies.</p>
+  <div class="hero-wrap">
+    <div class="container">
+      <div class="hero-card">
+        <div>
+          <span class="hero-badge">Design • Build • Innovate</span>
+          <h1 class="hero-title">Crafting <span class="grad">spaces that inspire.</span></h1>
+          <p class="hero-sub">
+            ALCH LLC blends modern design with timeless elegance — from concept to construction,
+            we shape environments where creativity and comfort coexist.
+          </p>
+          <div class="hero-actions">
+            <a class="btn" href="#projects">Our Work</a>
+            <a class="btn secondary" href="#contact">Contact Us</a>
+          </div>
+          <p class="muted" style="margin-top:10px;">
+            +1 859 859 5084 • support@felmoria.shop
+          </p>
+        </div>
+        <div class="hero-media">
+          <img src="https://i.pinimg.com/originals/07/5c/95/075c9502b76472b18ddc1e2745a9fef5.jpg" alt="Modern living space">
+          <img src="https://b5.3dsky.org/media/cache/tuk_model_custom_filter_ang_en/model_images/0000/0000/4993/4993243.6401ef56ce6c2.jpeg" alt="Interior render">
+          <img src="https://p.turbosquid.com/ts-thumb/Fx/bepBkw/d2HeOqtj/1500_p/jpg/1575281200/600x600/fit_q87/6e2f18909b0101987fc4b61c35ba60eaf9e1d163/1500_p.jpg" alt="Architectural lighting design">
+          <img src="https://avatars.mds.yandex.net/get-altay/906486/2a0000018645c63f2b37711bd0c50d9eb15f/orig" alt="Luxury furniture concept">
+        </div>
+      </div>
+    </div>
+  </div>
 
+  <section id="about" class="container">
+    <h2>About Us</h2>
+    <p class="muted">
+      Founded in San Diego, ALCH LLC is a modern design and architecture studio focused on creating
+      contemporary interiors and residential spaces with craftsmanship and detail.
+    </p>
+    <div class="cards" style="margin-top:12px">
+      <article class="card reveal"><strong>Innovative Design:</strong> Merging technology with creativity for next-generation spaces.</article>
+      <article class="card reveal"><strong>Premium Materials:</strong> Curated textures and finishes from sustainable sources.</article>
+      <article class="card reveal"><strong>Custom Builds:</strong> Bespoke solutions tailored to each client’s lifestyle.</article>
+      <article class="card reveal"><strong>End-to-End:</strong> From planning to final handoff, our process ensures precision.</article>
+    </div>
+  </section>
+
+  <section id="projects" class="container">
+    <h2>Featured Projects</h2>
+    <div class="cards">
+      <article class="card reveal">
+        <h3>Coastal Harmony</h3>
+        <p>Beachfront residence blending organic textures with coastal tones.</p>
+      </article>
+      <article class="card reveal">
+        <h3>Urban Light Loft</h3>
+        <p>Industrial-inspired living with glass walls, warm wood, and matte black steel.</p>
+      </article>
+      <article class="card reveal">
+        <h3>Golden Ratio Penthouse</h3>
+        <p>Minimalist luxury defined by geometry and subtle elegance.</p>
+      </article>
+      <article class="card reveal">
+        <h3>Modernist Villa</h3>
+        <p>Expansive open-plan villa emphasizing light, balance, and natural flow.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="gallery" class="container">
+    <h2>Gallery</h2>
+    <div class="gallery">
+      <img src="https://i.pinimg.com/originals/07/5c/95/075c9502b76472b18ddc1e2745a9fef5.jpg" alt="Modern room design">
+      <img src="https://b5.3dsky.org/media/cache/tuk_model_custom_filter_ang_en/model_images/0000/0000/4993/4993243.6401ef56ce6c2.jpeg" alt="Interior lounge">
+      <img src="https://p.turbosquid.com/ts-thumb/Fx/bepBkw/d2HeOqtj/1500_p/jpg/1575281200/600x600/fit_q87/6e2f18909b0101987fc4b61c35ba60eaf9e1d163/1500_p.jpg" alt="Architectural lighting">
+      <img src="https://avatars.mds.yandex.net/get-altay/906486/2a0000018645c63f2b37711bd0c50d9eb15f/orig" alt="Furniture layout concept">
+    </div>
+  </section>
+
+  <section id="contact" class="container">
     <h2>Contact</h2>
-    <div class="contact">
-      <p><strong>Address:</strong> 915 W 2nd Ave, Spokane, WA 99201</p>
-      <p><strong>Email:</strong> <a href="mailto:ryanberg@capgarland.shop">ryanberg@capgarland.shop</a></p>
-      <p><strong>Phone:</strong> (509) 822-3850</p>
+    <div class="contact-box">
+      <div><strong>Company:</strong> ALCH LLC</div>
+      <div><strong>Address:</strong> DAWES ST, San Diego, CA 92109</div>
+      <div><strong>Phone:</strong> +1 859 859 5084</div>
+      <div><strong>Email:</strong> support@felmoria.shop</div>
+      <div class="contact-actions">
+        <a href="mailto:support@felmoria.shop?subject=Inquiry%20-%20ALCH%20LLC" target="_blank">Email Us</a>
+        <a href="tel:+18598595084">Call Now</a>
+        <a href="https://wa.me/18598595084" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
     </div>
   </section>
 
   <footer>
-    &copy; 2025 CAP Garland, LLC. All rights reserved.
+    © 2025 ALCH LLC — Modern Living & Interior Excellence
   </footer>
+
+  <script>
+    const observer = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){ e.target.classList.add('reveal'); observer.unobserve(e.target); }
+      })
+    }, {threshold:.15});
+    document.querySelectorAll('.card').forEach(el=>observer.observe(el));
+  </script>
 </body>
 </html>
